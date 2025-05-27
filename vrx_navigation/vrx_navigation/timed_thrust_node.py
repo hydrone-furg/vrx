@@ -9,7 +9,7 @@ from geographic_msgs.msg import GeoPoseStamped
 LEFT_THRUSTER_TOPIC = '/wamv/thrusters/left/thrust'
 RIGHT_THRUSTER_TOPIC = '/wamv/thrusters/right/thrust'
 
-GEOPOSE_TOPIC = '/wamv/geopose' ##
+GEOPOSE_TOPIC = '/wamv/geopose'
 
 THRUST_VALUE = 5000.0
 MOVE_DURATION = 5.0
@@ -19,8 +19,8 @@ class TimedThrustNode(Node):
     def __init__(self):
         super().__init__('wamv_simple_navigation_node')
 
-        self.stop_timer = None # Para guardar a referencia do timer
-        self.geopose_received = False ##
+        self.stop_timer = None
+        self.geopose_received = False
         self.movement_started = False
 
         self.geopose_subscriber = self.create_subscription(GeoPoseStamped, GEOPOSE_TOPIC, self.geopose_callback, 10) ##
@@ -30,14 +30,13 @@ class TimedThrustNode(Node):
         self.get_logger().info('TimedThrustNode iniciado.')
         self.get_logger().info('Aguardando Geopose...')
         time.sleep(1.0) 
-        #self.start_movement()
-    #''' 
-    def geopose_callback(self, msg: GeoPoseStamped): ##
+
+    def geopose_callback(self, msg: GeoPoseStamped):
         if not self.geopose_received:
             self.geopose_received = True
             self.get_logger().info('Mensagem GeoPose recebida. Iniciando movimento.')
-            self.start_movement() ##
-    #'''
+            self.start_movement()
+            
     def start_movement(self):
         if self.movement_started:
             return
