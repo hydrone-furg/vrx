@@ -20,13 +20,13 @@ class LocalizationNode(Node):
         self.latest_imu: Imu | None = None
 
         # Subscriber
-        self.gps_subscriber = self.create_subscription(NavSatFix, GPS_TOPIC, self.gps_callback, 10)  # QoS profile depth
+        self.gps_subscriber = self.create_subscription(NavSatFix, GPS_TOPIC, self.gps_callback, 10) # QoS profile depth
         self.imu_subscriber = self.create_subscription(Imu, IMU_TOPIC, self.imu_callback, 10)
 
         # Publisher
         self.geopose_publisher = self.create_publisher(GeoPoseStamped, '/wamv/geopose', 10)
 
-        t_period = 0.1  # 10 Hz
+        t_period = 0.1 # 10 Hz
         self.timer = self.create_timer(t_period, self.timer_callback)
 
         self.get_logger().info('Nó de localização iniciado.')
@@ -48,7 +48,7 @@ class LocalizationNode(Node):
 
             # Header:
             geo_pose_msg.header.stamp = self.get_clock().now().to_msg()
-            geo_pose_msg.header.frame_id = 'map' # Ou 'world', 'odom' dependendo da sua configuração
+            geo_pose_msg.header.frame_id = 'map' # world...
 
             # Pose:
             geo_pose_msg.pose.position.latitude = self.latest_gps.latitude
