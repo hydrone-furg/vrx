@@ -4,6 +4,21 @@ This repository is the home to the source code and software documentation for th
 * For RobotX competitors this simulation environment is intended as a first step toward developing tools prototyping solutions in advance of physical on-water testing.
 * We also welcome users with simulation needs beyond RobotX. As we continue to improve the environment, we hope to offer support to a wide range of potential applications.
 
+## Setup inicial:
+### Passos:
+```
+cd ~/vrx_ws/src
+source /opt/ros/humble/setup.bash
+cd ~/vrx_ws
+colcon build --merge-install
+. install/setup.bash
+```
+
+Para executar o **mundo: sydney_regatta**:
+```
+ros2 launch vrx_gz competition.launch.py world:=sydney_regatta
+```
+
 ## A new modernization development: Gazebo Harmonic and ROS 2 Jazzy
 
 > [!NOTE]
